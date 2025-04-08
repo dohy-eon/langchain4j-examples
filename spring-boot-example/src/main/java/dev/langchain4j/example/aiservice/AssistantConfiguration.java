@@ -34,4 +34,18 @@ public class AssistantConfiguration {
     ChatModelListener chatModelListener() {
         return new MyChatModelListener();
     }
+
+    @Bean
+    public OpenAiChatModel openAiChatModel() {
+        return OpenAiChatModel.builder()
+            .baseUrl("http://langchain4j.dev/demo/openai/v1")
+            .apiKey("demo")
+            .modelName("gpt-4o-mini")
+            .build();
+    }
+
+    @Bean
+    public ChatLanguageModel chatLanguageModel(OpenAiChatModel model) {
+        return model; // 인터페이스 타입으로 빈 등록
+    }
 }
